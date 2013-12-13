@@ -1,3 +1,6 @@
+tic;
+addpath ../yeal_matlab;
+
 kws = dir('annots/*.dat');
 
 dbnames = [];
@@ -22,3 +25,4 @@ for i=1:length(kws)
   
   
 end
+toc;
