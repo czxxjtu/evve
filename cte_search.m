@@ -5,12 +5,21 @@ cte_load_database;
 cte_load_queries;
 
 
-qdescs_norm = normalize_l2(qdescs);
-dbdescs_norm = normalize_l2(dbdescs);
+qdescs_norm = cte_normalize_l2(qdescs);
+dbdescs_norm = cte_normalize_l2(dbdescs);
+save('features.mat');
 
 toc;
 
-scoremat = dbdescs_norm' * qdescs_norm;
+scoremat = zeros(length(dbdescs_norm, qdescs_norm));
+
+for i = 1:length(dbdescs_norm)
+    db = dbdescs_norm{i};
+    for j =1:length(qdescs_norm)
+        q = qdescs_norm{j};
+        scoremat(i,j) = calcS(q, db, 512, 1);
+    end
+end
 
 f = fopen('resfile.dat', 'w');
 assert(f ~= -1)

@@ -15,7 +15,7 @@ dbdescs_norm = normalize_l2(dbdescs);
 
 scoremat = dbdescs_norm' * qdescs_norm;
 
-f = fopen('resfile.dat', 'w');
+f = fopen('resfile2.dat', 'w');
 assert(f ~= -1)
   
 for qno = 1:size(qdescs, 2)

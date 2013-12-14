@@ -1,5 +1,4 @@
 tic;
-addpath ../yeal_matlab;
 
 kws = dir('annots/*.dat');
 
