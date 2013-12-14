@@ -1,6 +1,7 @@
-tic;
-
 kws = dir('annots/*.dat');
+
+global qnames
+global qdescs
 
 qnames = [];
 qdescs = {};
@@ -21,7 +22,4 @@ for i=1:length(kws)
     %store description
     qdescs = [qdescs v(j).descs];
   end
-  
-  
 end
-toc;

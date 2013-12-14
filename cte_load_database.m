@@ -1,6 +1,6 @@
-tic;
-
 kws = dir('annots/*.dat');
+global dbnames
+global dbdescs
 
 dbnames = [];
 dbdescs = {};
@@ -21,7 +21,4 @@ for i=1:length(kws)
     %store description
     dbdescs = [dbdescs v(j).descs];
   end
-  
-  
 end
-toc;
