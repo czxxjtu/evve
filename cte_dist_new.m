@@ -14,20 +14,20 @@ for i = 1:length(qdescs_norm)
 end
 
 ll = nextpow2(longest);
-%bigtable = zeros(512 * (length(dbdescs_norm) + length(qdescs_norm)), 2^ll);
-pt = 1;
-for i = 1:length(dbdescs_norm)
-    i
-    bigtable(pt:pt + 511) = [dbdescs_norm{i} zeros(512, 2^ll - size(dbdescs_norm{i}, 2))];
-    pt = pt + 512;
-end
+
+bigtable = [];
 for i = 1:length(qdescs_norm)
-    i
-    bigtable(pt:pt+511) = [qdescs_norm{i} zeros(512, 2^ll - size(qdescs_norm{i}, 2))];
-    pt = pt + 512;
+    seq = [qdescs_norm{i} zeros(512, 2^ll - size(qdescs_norm{i}, 2))];
+    seqfft = fft(seq')';
+    seqfft = seqfft(:, 1:d);
+    bigtable = [bigtable; seqfft];
 end
-bigtable = fft(bigtable')';
-bigtable = bigtable(:, 1:d);
+for i = 1:length(dbdescs_norm)
+    seq = [dbdescs_norm{i} zeros(512, 2^ll - size(dbdescs_norm{i}, 2))];
+    seqfft = fft(seq')';
+    seqfft = seqfft(:, 1:d);
+    bigtable = [bigtable; seqfft];
+end
 
 largematrix  = zeros(size(bigtable, 1), size(bigtable, 2) * 2);
  for i = 1:size(bigtable, 2)
