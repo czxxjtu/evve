@@ -1,4 +1,4 @@
-function cte_dist(lambda)
+function cte_dist(lambda, d)
 
 global qdescs_norm
 global dbdescs_norm
@@ -9,14 +9,14 @@ scoremat = zeros(length(dbdescs_norm), length(qdescs_norm));
 for i = 1:length(dbdescs_norm)
     i
     db = dbdescs_norm{i};
-    parfor j =1:length(qdescs_norm)
+    for j =1:length(qdescs_norm)
         q = qdescs_norm{j};
-        scoremat(i,j) = max(calcS(q, db, lambda, 512));
+        scoremat(i,j) = max(calcS(q, db, lambda, d));
     end
 end
-save(['scoremat' num2str(lambda), '.mat'], scoremat);
+save(['scoremat_' num2str(lambda) '_' num2str(d) '_.mat'], 'scoremat');
 
-f = fopen(['resfile_' num2str(lambda) '_.dat'], 'w');
+f = fopen(['resfile_' num2str(lambda) num2str(d) '_.dat'], 'w');
 assert(f ~= -1)
   
 for qno = 1:length(qdescs_norm)
@@ -33,4 +33,5 @@ for qno = 1:length(qdescs_norm)
   
 end
 fclose(f)
+clear scoremat ;
 end
