@@ -17,12 +17,14 @@ ll = nextpow2(longest);
 
 bigtable = [];
 for i = 1:length(qdescs_norm)
+    i
     seq = [qdescs_norm{i} zeros(512, 2^ll - size(qdescs_norm{i}, 2))];
     seqfft = fft(seq')';
     seqfft = seqfft(:, 1:d);
     bigtable = [bigtable; seqfft];
 end
 for i = 1:length(dbdescs_norm)
+    i
     seq = [dbdescs_norm{i} zeros(512, 2^ll - size(dbdescs_norm{i}, 2))];
     seqfft = fft(seq')';
     seqfft = seqfft(:, 1:d);

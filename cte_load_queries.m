@@ -6,7 +6,7 @@ global qdescs
 qnames = [];
 qdescs = {};
 
-d = 1024;
+d = 512;
 
 for i=1:length(kws)
   % for i=1:1
